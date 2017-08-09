@@ -179,8 +179,6 @@ santasWorkshop('Ralphie', 'Parker'); // 'Santa and his elves wish you a very mer
 
 
 
-
-
 /******************************************************************************\
   #PROBLEM-06
   - I liked this one the way it was. 
@@ -312,3 +310,172 @@ timeOutCounter();
 //   }
 // }
 // timeOutCounter();
+
+
+
+
+
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+                        BONUS PROBLEMS
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+
+/******************************************************************************\
+  #PROBLEM-09
+  - This one is similar in difficulty to problems 1 and 2.
+\******************************************************************************/
+
+/****** INSTRUCTIONS PROBLEM 9 ******/
+/* 
+  All employees at the company are getting a 15% bonus this year. Here is a 
+  function called earnings that takes in a job title and salary, calculates 
+  the total earnings, and returns an inner function that displays the result 
+  in a string.
+
+  Create a ceo function, passing in "CEO" (string) and the CEO's salary of 
+  2 million dollars (just a number, no dollar sign).
+ */
+
+function earnings(title, salary) {
+  var total = salary * 1.15;
+  
+  return function() {
+    return 'The ' + title + ' made $' + total + ' this year.';
+  };
+}
+
+// Solution
+var ceo = earnings("CEO", 2000000);
+ceo();
+
+
+
+/******************************************************************************\
+  #PROBLEM-10
+\******************************************************************************/
+
+/****** INSTRUCTIONS PROBLEM 10 ******/
+/* 
+  Below is a family function which takes in a family name (i.e., a last name). 
+  It returns a function that takes in a given name and returns the full name 
+  (with a small compliment). Pass the correct parameters into each function.
+
+  Now create a function called alvarez and another called ziegler by calling 
+  the family function and passing in 'Alvarez' and 'Ziegler'. Call each of 
+  these two functions to return correct strings for both Lisa Alvarez and 
+  Amy Ziegler.
+ */
+
+function family(/* ? */) {
+  
+  return function(/* ? */) {
+    return firstname + ' ' + lastname + ' is a lovely name.'
+  };
+}
+
+// Solution
+function family(lastname) {
+  
+  return function(firstname) {
+    return firstname + ' ' + lastname + ' is a lovely name.'
+  };
+}
+
+var alvarez = family('Alvarez');
+alvarez('Lisa');
+var ziegler = family('Ziegler');
+ziegler('Amy');
+
+
+
+
+/******************************************************************************\
+  #PROBLEM-11
+\******************************************************************************/
+
+/****** INSTRUCTIONS PROBLEM 11 ******/
+/* 
+  Here is a function called stateSalesTax, which accepts a sales tax rate for a 
+  given state and returns an inner function that calculates the total when given 
+  the cost of the purchased items.
+
+  Pass the correct parameters into the function definition.
+
+  Below the function, create a utah function for calculating the sales tax on 
+  purchases made in Utah. Use 0.047 as the tax rate. Invoke the function you 
+  created to calculate the total given a cost of $1000.
+*/
+
+  
+function stateSalesTax(/* ? */) { // pass in the correct parameter
+
+  return function(/* ? */) { // pass in the correct parameter
+    return cost * (1 + rate);
+  };
+}
+
+
+// Solution
+function stateSalesTax(rate) {
+
+  return function(cost) {
+    return cost * (1 + rate);
+  };
+}
+var utah = stateSalesTax(0.047);
+utah(1000);
+
+
+
+
+
+
+/******************************************************************************\
+  #PROBLEM-12
+  - This one requires students to write out the main function.
+  - It also tests understanding of the modular pattern.
+\******************************************************************************/
+
+/****** INSTRUCTIONS PROBLEM 12 ******/
+/* 
+  Write a function call devMountain that has a private variable on its local 
+  scope which is an array of core coding skills as shown below.
+  var skills = ['JavaScript', 'React', 'Node', 'Express', 'SQL', 'HTML/CSS'];
+
+  Have the function return an object with two methods, one called listSkills 
+  and the other called learnSkills. The first simply returns the list of 
+  skills. The second can take in either a single skill (string) or a list of 
+  skills (array) and will add the new skill(s) to the list.
+
+  Create an object called jane to represent a new student named Jane who just 
+  started at DevMountain. This variable should store the devMountain function's 
+  inner functions. Use implicit binding to call jane's learnSkills method and 
+  have Jane learn 'RegEx' and 'ping pong' in addition to the core skills. Then 
+  use implicit binding to call the listSkills method.
+*/
+
+function devMountain() {
+  // Code Here
+}
+
+
+// Solution
+function devMountain() {
+  var skills = ['JavaScript', 'React', 'Node', 'Express', 'SQL', 'HTML/CSS'];
+  
+  return {
+    listSkills: function() {
+      return skills;
+    },
+    learnSkills: function(newSkills) {
+      skills = skills.concat(newSkills);
+    }
+  };
+}
+var jane = devMountain();
+jane.learnSkills(['ping pong', 'RegEx']);
+jane.listSkills();

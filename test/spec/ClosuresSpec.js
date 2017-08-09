@@ -190,5 +190,79 @@ describe('closures', function () {
 		})
 	})
 
+	describe('earnings', function () {
+		it('should exist', function () {
+			expect(earnings).toBeDefined();
+		})
+		it('should be a function', function () {
+			expect(earnings).toEqual(jasmine.any(Function));
+		})
+		it('should return \"The CEO made $2300000 this year.\"', function () {
+			expect(ceo('CEO', 2000000)).toBe('The CEO made $2300000 this year.');
+		})
+		it('should use the inner function', function () {
+			var newCall = earnings('CEO', 2000000);
+			expect(newCall()).toEqual(ceo());
+		})
+	})
+
+	describe('family', function () {
+		it('should exist', function () {
+			expect(family).toBeDefined();
+		})
+		it('should be a function', function () {
+			expect(family).toEqual(jasmine.any(Function));
+		})
+		it('should return \"Lisa Alvarez is a lovely name.\"', function () {
+			expect(alvarez('Lisa')).toBe('Lisa Alvarez is a lovely name.');
+		})
+		it('should return \"Amy Ziegler is a lovely name.\"', function () {
+			expect(ziegler('Amy')).toBe('Amy Ziegler is a lovely name.');
+		})
+		it('should use the inner function', function () {
+			var newCall = family('Ziegler');
+			expect(newCall('James')).toEqual(ziegler('James'));
+		})
+	})
+
+	describe('stateSalesTax', function () {
+		it('should exist', function () {
+			expect(stateSalesTax).toBeDefined();
+		})
+		it('should be a function', function () {
+			expect(stateSalesTax).toEqual(jasmine.any(Function));
+		})
+		it('should return 1047', function () {
+			expect(utah(1000)).toBe(1047);
+		})
+		it('should use the inner function', function () {
+			var newCall = stateSalesTax(0.047);
+			expect(newCall(1234)).toEqual(utah(1234));
+		})
+	})
+
+	describe('devMountain', function () {
+		var janesSkills = ['JavaScript', 'React', 'Node', 'Express', 'SQL', 'HTML/CSS', 'RegEx', 'ping pong'].sort().map(item => item.toLowerCase());
+		var resultsArray = jane.listSkills().sort().map(item => item.toLowerCase());
+
+		it('should exist', function () {
+			expect(devMountain).toBeDefined();
+		})
+		it('should be a function', function () {
+			expect(devMountain).toEqual(jasmine.any(Function));
+		})
+		it('should add RegEx and ping pong to the original list of skills', function () {
+			expect(resultsArray).toEqual(janesSkills);
+		})
+		it('be able to pass in an array of skills to learnSkills method', function () {
+			jane.learnSkills(['foosball', 'debugging', 'pair programming']);
+			var moreSkills = jane.listSkills().map(item => item.toLowerCase())	;
+			// jane.learnSkills(moreSkills);
+			// var janeLearnMoreSkills = jane.listSkills();
+			expect(moreSkills).toContain('foosball');
+			expect(moreSkills).toContain('debugging');
+			expect(moreSkills).toContain('pair programming');
+		})
+	})
 
 });
